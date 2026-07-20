@@ -44,7 +44,7 @@ class GameObject:
     def __init__(self, position, body_color=None):
         self.position = position
         self.body_color = body_color
-        
+
     def draw(self):
         pass
 
@@ -54,10 +54,11 @@ class Apple(GameObject):
     Класс, представляющий яблоко в игре.
     Наследуется от GameObject.
     """
+
     def __init__(self, position, body_color):
         """
         Инициализирует яблоко и сразу задает ему случайную позицию.
-        
+
         :param position: Начальная позиция (используется как заглушка, затем перезаписывается).
         :param body_color: Цвет яблока.
         """
@@ -82,6 +83,7 @@ class Apple(GameObject):
         pygame.draw.rect(screen, self.body_color, rect)
         pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
 
+
 class Snake(GameObject):
     def __init__(self, position, body_color):
 
@@ -94,12 +96,12 @@ class Snake(GameObject):
 
     def get_head_position(self):
         return self.positions[0]
-    
+
     def update_direction(self):
         if self.next_direction:
             self.direction = self.next_direction
             self.next_direction = None
-    
+
     def move(self):
         """
         берем координаты первого элемента списка self.positions 
@@ -108,29 +110,26 @@ class Snake(GameObject):
         """
         x, y = self.get_head_position()
         dx, dy = self.direction
-        
+
         # Вычисляем новую позицию с учетом прохода сквозь стены (операция %)
         new_position = (
             (x + dx * GRID_SIZE) % SCREEN_WIDTH,
             (y + dy * GRID_SIZE) % SCREEN_HEIGHT
         )
-        
+
         # Проверка на столкновение с собой (проверяем начиная с 3-го сегмента, так как шея не может быть головой)
         if len(self.positions) > 2 and new_position in self.positions[2:]:
             self.reset()
         else:
             # Добавляем новую голову в начало списка
             self.positions.insert(0, new_position)
-            
+
             # Если длина списка превысила разрешенную длину змейки, удаляем хвост
             if len(self.positions) > self.length:
                 self.last = self.positions.pop()
             else:
                 # Если змейка только что съела яблоко, хвост не удаляется
                 self.last = None
-
-
-
 
     def reset(self):
         """
@@ -151,21 +150,18 @@ class Snake(GameObject):
             rect = pygame.Rect(position, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, self.body_color, rect)
             pygame.draw.rect(screen, BORDER_COLOR, rect, 1)
-        
+
         # Затирание старого хвоста, если он был удален при движении
         if self.last:
             last_rect = pygame.Rect(self.last, (GRID_SIZE, GRID_SIZE))
             pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
 
-
-
-
 def handle_keys(game_object):
     """
     Обрабатывает события клавиатуры для изменения направления движения змейки.
     Запрещает движение в противоположном направлении (например, вниз, если движемся вверх).
-    
+
     :param game_object: Экземпляр класса Snake, которым управляет игрок.
     """
     for event in pygame.event.get():
@@ -190,25 +186,26 @@ def main():
     start_position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
     snake = Snake(start_position, SNAKE_COLOR)
     apple = Apple(start_position, APPLE_COLOR)
-    
+
     while True:
         # Ограничиваем частоту кадров, чтобы змейка не летала слишком быстро
         clock.tick(SPEED)
-        
+
         # 1. Обработка ввода
         handle_keys(snake)
-        
+
         # 2. Обновление состояния
         snake.update_direction()
         snake.move()
-        
+
         # 3. Проверка поедания яблока
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position()
-            
+
         # 4. Отрисовка
-        screen.fill(BOARD_BACKGROUND_COLOR)  # Очистка экрана перед новой отрисовкой
+        # Очистка экрана перед новой отрисовкой
+        screen.fill(BOARD_BACKGROUND_COLOR)
         apple.draw()
         snake.draw()
         pygame.display.update()
@@ -216,12 +213,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
 
 
 # Метод draw класса Apple
@@ -248,7 +239,7 @@ if __name__ == '__main__':
 #         pygame.draw.rect(screen, BOARD_BACKGROUND_COLOR, last_rect)
 
 # Функция обработки действий пользователя
-#GHT
+# GHT
 
 # Метод обновления направления после нажатия на кнопку
 # def update_direction(self):
