@@ -32,7 +32,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Базовый класс для всех игровых объектов."""
 
-    def __init__(self, position, body_color=None):
+    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=None):
         """Инициализирует базовый игровой объект.
 
         :param position: Начальная позиция объекта (x, y).
@@ -49,7 +49,7 @@ class GameObject:
 class Apple(GameObject):
     """Класс, представляющий яблоко в игре."""
 
-    def __init__(self, position, body_color):
+    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=APPLE_COLOR):
         """Инициализирует яблоко и сразу задает ему случайную позицию.
 
         :param position: Начальная позиция (заглушка).
@@ -75,7 +75,7 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс, представляющий змейку в игре."""
 
-    def __init__(self, position, body_color):
+    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=SNAKE_COLOR):
         """Инициализирует змейку с начальными параметрами.
 
         :param position: Начальная позиция головы змейки.
@@ -157,8 +157,8 @@ def main():
     """Основная функция игры, содержащая главный игровой цикл."""
     pygame.init()
     start_position = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
-    snake = Snake(start_position, SNAKE_COLOR)
-    apple = Apple(start_position, APPLE_COLOR)
+    snake = Snake(start_position)
+    apple = Apple(start_position)
 
     while True:
         clock.tick(SPEED)
