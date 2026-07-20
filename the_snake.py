@@ -1,10 +1,5 @@
-"""Модуль игры "Змейка".
-Реализует классическую игру Змейка с использованием библиотеки Pygame.
-"""
-
 import pygame
 from random import randint
-
 
 # Константы для размеров поля и сетки
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
