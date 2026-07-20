@@ -1,5 +1,6 @@
-import pygame
 from random import randint
+
+import pygame
 
 # Константы для размеров поля и сетки
 SCREEN_WIDTH, SCREEN_HEIGHT = 640, 480
@@ -33,6 +34,7 @@ class GameObject:
 
     def __init__(self, position, body_color=None):
         """Инициализирует базовый игровой объект.
+
         :param position: Начальная позиция объекта (x, y).
         :param body_color: Цвет объекта.
         """
@@ -49,6 +51,7 @@ class Apple(GameObject):
 
     def __init__(self, position, body_color):
         """Инициализирует яблоко и сразу задает ему случайную позицию.
+
         :param position: Начальная позиция (заглушка).
         :param body_color: Цвет яблока.
         """
@@ -74,6 +77,7 @@ class Snake(GameObject):
 
     def __init__(self, position, body_color):
         """Инициализирует змейку с начальными параметрами.
+
         :param position: Начальная позиция головы змейки.
         :param body_color: Цвет змейки.
         """
