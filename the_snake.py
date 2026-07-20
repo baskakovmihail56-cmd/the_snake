@@ -32,7 +32,11 @@ clock = pygame.time.Clock()
 class GameObject:
     """Базовый класс для всех игровых объектов."""
 
-    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=None):
+    def __init__(
+        self,
+        position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
+        body_color=None
+    ):
         """Инициализирует базовый игровой объект.
 
         :param position: Начальная позиция объекта (x, y).
@@ -49,7 +53,11 @@ class GameObject:
 class Apple(GameObject):
     """Класс, представляющий яблоко в игре."""
 
-    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=APPLE_COLOR):
+    def __init__(
+        self,
+        position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
+        body_color=APPLE_COLOR
+    ):
         """Инициализирует яблоко и сразу задает ему случайную позицию.
 
         :param position: Начальная позиция (заглушка).
@@ -59,7 +67,7 @@ class Apple(GameObject):
         self.randomize_position()
 
     def randomize_position(self):
-        """Устанавливает случайную позицию яблока в пределах игрового поля."""
+        """Устанавливает случайную позицию яблока в пределах поля."""
         self.position = (
             randint(0, GRID_WIDTH - 1) * GRID_SIZE,
             randint(0, GRID_HEIGHT - 1) * GRID_SIZE
@@ -75,7 +83,11 @@ class Apple(GameObject):
 class Snake(GameObject):
     """Класс, представляющий змейку в игре."""
 
-    def __init__(self, position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=SNAKE_COLOR):
+    def __init__(
+        self,
+        position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
+        body_color=SNAKE_COLOR
+    ):
         """Инициализирует змейку с начальными параметрами.
 
         :param position: Начальная позиция головы змейки.
